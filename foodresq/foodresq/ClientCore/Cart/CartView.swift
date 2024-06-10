@@ -22,7 +22,7 @@ struct CartView: View {
                 ForEach(viewModel.positions) { position in
                     CartCellView(position: position)
                 }.onAppear(perform: {
-                    Task {try await viewModel.fetchPositions() }
+                    Task {try await viewModel.fetchAddedToCartPositions() }
                     print(viewModel.positions)
                 })
             }

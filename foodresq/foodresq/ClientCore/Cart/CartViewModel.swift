@@ -18,7 +18,7 @@ class CartViewModel: ObservableObject{
     init(user: User) {
         self.user = user
         Task {try await fetchPositions() }
-        self.fetchAddedToCartPositions()
+        Task {try await fetchAddedToCartPositions() }
     }
      
     @MainActor
@@ -26,10 +26,12 @@ class CartViewModel: ObservableObject{
         self.positions = try await PositionService.fetchCartPositions()
     }
     
-    func fetchAddedToCartPositions() {
-        let uid = user.id
-        service.fetchAddedToCartPositions(forUid: uid) { positions in
-            self.addedToCartPositions = positions
-        }
+    func fetchAddedToCartPositions() async throws{
+//        let uid = user.id
+//        service.fetchAddedToCartPositions(forUid: uid) { positions in
+//            self.addedToCartPositions = positions
+//        }
+        
+        self.positions = try await PositionService.fetchCartPositions()
     }
 }
