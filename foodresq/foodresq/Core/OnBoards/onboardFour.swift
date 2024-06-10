@@ -41,7 +41,7 @@ struct onboardFour: View {
                     Spacer()
                     
                     
-                    NavigationLink(destination: LoginView(isRest: $isRestaurant).navigationBarBackButtonHidden(true), isActive: $isClient){
+                    NavigationLink(destination: LoginView(isRest: $isRestaurant), isActive: $isClient){
                         EmptyView()
                     }
                     

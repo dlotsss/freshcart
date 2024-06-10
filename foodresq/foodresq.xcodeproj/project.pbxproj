@@ -338,7 +338,6 @@
 				466C70E42C08DA84005B4240 /* TabView */,
 				46C751D22C075A500001F9EC /* Profile */,
 				4685A7CC2C09DB0E00DD3269 /* UploadPosition */,
-				46C751D32C075A5B0001F9EC /* Home */,
 				465CF9172C0A527F006368DD /* RestaurantsList */,
 				466C70E72C08E46C005B4240 /* BuyNow */,
 				4668F46B2C062B5F00028465 /* Components */,
@@ -383,13 +382,6 @@
 				4685A7DA2C0A1A1B00DD3269 /* View */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		46C751D32C075A5B0001F9EC /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		46C751EB2C079B400001F9EC /* View */ = {
