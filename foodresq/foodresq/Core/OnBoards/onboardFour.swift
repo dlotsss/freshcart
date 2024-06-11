@@ -41,7 +41,7 @@ struct onboardFour: View {
                     Spacer()
                     
                     
-                    NavigationLink(destination: LoginView(isRest: $isRestaurant), isActive: $isClient){
+                    NavigationLink(destination: LoginView(isRest: $isRestaurant).tint(Color(blueColor)), isActive: $isClient){
                         EmptyView()
                     }
                     
@@ -56,7 +56,7 @@ struct onboardFour: View {
                     Spacer()
                 }
                 Spacer()
-            }
+            }.tint(Color(blueColor))
         }
     }
 }

@@ -59,7 +59,7 @@ extension PositionService{
         
         Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity + 1,
                                                                                        "addedToCart": !position.addedToCart!]) {_ in
-            userCartRef.document(positionId).setData([:]) { _ in
+            userCartRef.document(positionId).setData(["userAdded": uid]) { _ in
                 completion()
             }
         }

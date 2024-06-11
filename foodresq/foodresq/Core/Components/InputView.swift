@@ -14,8 +14,8 @@ struct InputView: View {
     let placeholder: String
     var isSecureField = false
     var body: some View {
-        VStack{
-            Text(title).font(.custom("Montserrat-Medium", size: 16))
+        VStack(alignment: .leading){
+            Text(title).font(.custom("Montserrat-Medium", size: 16)).padding(.leading, 20)
             if isSecureField {
                 SecureField(placeholder, text: $text).font(.custom("Montserrat-Regullar", size: 14)).padding(.leading, 14).padding(.vertical, 16).padding(.trailing, 136).background(.white).cornerRadius(50).padding(.leading, 20).padding(.trailing, 20)
             } else {

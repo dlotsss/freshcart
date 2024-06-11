@@ -28,12 +28,12 @@ struct LoginView: View {
                 Text("Снова привет!").font(.custom("Montserrat-Medium", size: 28)).padding(.bottom, 4).padding(.top, 128)
                 Text("С возвращением! Мы скучали \nпо тебе!").font(.custom("Montserrat-Regular", size: 16)).frame(width: 267, height: 48).multilineTextAlignment(.center).padding(.bottom, 24)
                 
-                VStack{
+                VStack(alignment: .leading){
                     InputView(text: $login,
                               title: "Логин",
-                              placeholder: "name@example.com").autocapitalization(.none)
+                              placeholder: "name@example.com").autocapitalization(.none).padding(.bottom, 16)
                     
-                    ZStack(alignment: Alignment(horizontal: .trailing, vertical: .center)){
+                    ZStack(alignment: Alignment(horizontal: .trailing, vertical: .lastTextBaseline)){
                         InputView(text: $password,
                                   title: "Пароль",
                                   placeholder: "Введите свой пароль",
@@ -44,7 +44,7 @@ struct LoginView: View {
                         }) {
                             Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
                         }.foregroundStyle(.black).padding(.trailing, 34)
-                    }
+                    }.padding(.bottom, 34)
                 }
                 Button(action: {
                     Task {
@@ -77,7 +77,7 @@ struct LoginView: View {
 
             }
             .background(Color(lightGreyColor)).background(ignoresSafeAreaEdges: .all)
-        }
+        }.tint(Color(blueColor))
     }
 }
 
