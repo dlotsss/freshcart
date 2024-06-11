@@ -49,7 +49,6 @@ struct EditProfileView: View {
                 }
             }
             Divider()
-            
             //edit profile pic
 //            PhotosPicker(selection: $viewModel.selectedImage){
 //                VStack{
@@ -78,6 +77,7 @@ struct EditProfileView: View {
                     TextField("Введите описание ресторана", text: $viewModel.description, axis: .vertical)
                 }
             }
+            Spacer()
         }.tint(Color(blueColor))
     }
 }

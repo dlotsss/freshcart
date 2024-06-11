@@ -67,6 +67,7 @@ struct UploadPositionView: View {
                 
             }
         }.background(Color(lightGreyColor)).background(ignoresSafeAreaEdges: .all)
+            .tint(Color(blueColor))
         .onAppear(){
             imagePickerPresented.toggle()
             
