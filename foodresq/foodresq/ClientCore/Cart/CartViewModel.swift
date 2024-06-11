@@ -21,13 +21,13 @@ class CartViewModel: ObservableObject{
     
     init(user: User) {
         self.user = user
-        Task {try await fetchPositions() }
+        Task {try await fetchPositions(uid: user.id) }
         Task {try await fetchAddedToCartPositions() }
     }
      
     @MainActor
-    func fetchPositions() async throws {
-        self.positions = try await PositionService.fetchCartPositions()
+    func fetchPositions(uid: String) async throws {
+        self.positions = try await PositionService.fetchCartPositions(uid: uid)
     }
     
     func fetchAddedToCartPositions() async throws{
@@ -38,7 +38,7 @@ class CartViewModel: ObservableObject{
         
        // self.positions = try await PositionService.fetchCartPositions()
         
-        let query = Firestore.firestore().collection("users").document(self.user.id).collection("user-cart")
+        let query = Firestore.firestore().collection("users").document(self.user.id).collection("user-cart").whereField("userAdded", isEqualTo: self.user.id)
         
         
         listener = query.addSnapshotListener { (snapshot, error) in

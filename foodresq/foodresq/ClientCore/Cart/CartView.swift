@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CartView: View {
     @StateObject var viewModel: CartViewModel
+    var user: User
     
     init(user: User) {
+        self.user = user
         self._viewModel = StateObject(wrappedValue: CartViewModel(user: user))
     }
     func test() {
@@ -22,7 +24,7 @@ struct CartView: View {
                 ForEach(viewModel.positions) { position in
                     CartCellView(position: position)
                 }.onAppear(perform: {
-                    Task {try await viewModel.fetchPositions() }
+                    Task {try await viewModel.fetchPositions(uid: self.user.id) }
                     print(viewModel.positions)
                 })
             }

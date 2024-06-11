@@ -12,6 +12,7 @@ struct PositionService{
     
     static func fetchAllBuyNowPositions() async throws -> [Position] {
         let snapshot = try await Firestore.firestore().collection("positions").getDocuments()
+        print(snapshot.documents)
         var positions = try snapshot.documents.compactMap({ document in
             try document.data(as: Position.self)
         })
@@ -26,8 +27,10 @@ struct PositionService{
         return positions
     }
     
-    static func fetchCartPositions() async throws -> [Position] {
+    static func fetchCartPositions(uid: String) async throws -> [Position] {
+      //  let snapshot = try await Firestore.firestore().collection("users").document(uid).collection("user-cart").getDocuments()
         let snapshot = try await Firestore.firestore().collection("positions").whereField("addedToCart", isEqualTo: true).getDocuments()
+        print(snapshot.documents)
         var positions = try snapshot.documents.compactMap({ document in
             try document.data(as: Position.self)
         })
@@ -57,7 +60,7 @@ extension PositionService{
         guard position.quantity > 0 else {return}
         let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
         
-        Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity + 1,
+        Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity - 1,
                                                                                        "addedToCart": !position.addedToCart!]) {_ in
             userCartRef.document(positionId).setData(["userAdded": uid]) { _ in
                 completion()
@@ -81,7 +84,7 @@ extension PositionService{
         let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
         
         
-        Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity - 1,
+        Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity + 1,
                                                                                        "addedToCart": !position.addedToCart!]) {_ in
             userCartRef.document(positionId).delete { _ in
                 completion()
