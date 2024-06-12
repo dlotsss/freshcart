@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BuyNowView: View {
     @StateObject var viewModel = BuyNowViewModel()
-    
+    let user: User
     var greyColor = #colorLiteral(red: 0.5131264925, green: 0.5556035042, blue: 0.5779691339, alpha: 1)
     var lightGreyColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
     var blueColor = #colorLiteral(red: 0.3568627451, green: 0.6196078431, blue: 0.8823529412, alpha: 1)
@@ -19,13 +19,13 @@ struct BuyNowView: View {
         ScrollView{
             LazyVStack{
                 ForEach(viewModel.positions) { position in
-                    BuyNowCell(position: position)
-                } 
+                    BuyNowCell(position: position, user: user)
+                }
             }.background(Color(lightGreyColor)).background(ignoresSafeAreaEdges: .all)
         }
     }
 }
 
 #Preview {
-    BuyNowView()
+    BuyNowView(user: User.MOCK_USERS[5])
 }

@@ -35,7 +35,7 @@ struct MainTabView: View {
         }
         else {
             TabView{
-                BuyNowView().tabItem {
+                BuyNowView(user: user).tabItem {
                     Image(systemName: "fork.knife.circle")
                 }.tag(0)
                 RestaurantsView().tabItem {
