@@ -24,6 +24,8 @@ class BuyNowCellModel: ObservableObject{
     func addToCart() {
         service.addToCart(position) {
             self.position.addedToCart = true
+            self.position.addedToCartID = Auth.auth().currentUser?.uid
+            print(Auth.auth().currentUser?.uid ?? "")
         }
     }
     
@@ -53,6 +55,7 @@ class BuyNowCellModel: ObservableObject{
     func deleteFromCart() {
         service.deleteFromCart(position) {
             self.position.addedToCart = false  
+            self.position.addedToCartID = ""
         }
     }
 }
