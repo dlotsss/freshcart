@@ -30,6 +30,12 @@ class CartViewModel: ObservableObject{
         self.positions = try await PositionService.fetchCartPositions(uid: uid)
     }
     
+    func purchase(positons: [Position]) {
+        service.purchase(positions) {
+            
+        }
+    }
+    
     func fetchAddedToCartPositions() async throws{
 //        let uid = user.id
 //        service.fetchAddedToCartPositions(forUid: uid) { positions in

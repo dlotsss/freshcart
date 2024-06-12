@@ -92,6 +92,24 @@ extension PositionService{
         }
     }
     
+    func purchase(_ positions: [Position], completion: @escaping() -> Void) {
+        for i in 0..<positions.count{
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            let positionId = positions[i].id
+            
+            let allPositionsRef = Firestore.firestore().collection("positions")
+            let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
+            
+            allPositionsRef.document(positionId).delete{_ in
+                completion()
+            }
+            
+            userCartRef.document(positionId).delete { _ in
+                completion()
+            }
+        }
+    }
+    
     func fetchAddedToCartPositions(forUid uid: String, completion: @escaping([Position]) -> Void) {
         print(333)
         var positions = [Position]()
