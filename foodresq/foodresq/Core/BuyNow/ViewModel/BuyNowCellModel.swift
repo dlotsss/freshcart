@@ -14,17 +14,25 @@ class BuyNowCellModel: ObservableObject{
     @Published var position: Position
     private let service = PositionService()
     private var listener: ListenerRegistration?
+    let user: User
     
-    init(position: Position) {
+    init(position: Position, user: User) {
         self.position = position
-        checkIfPositionIsAdded()
+        
         //startListening()
+        self.user = user
+        checkIfPositionIsAdded()
     }
     
     func addToCart() {
         service.addToCart(position) {
+            guard var whoAddedIDArray = self.position.addedToCartID else {return }
             self.position.addedToCart = true
-            self.position.addedToCartID = Auth.auth().currentUser?.uid
+            let currentUserUID = Auth.auth().currentUser?.uid ?? ""
+            if !whoAddedIDArray.contains(currentUserUID) {
+                       whoAddedIDArray.append(currentUserUID)
+                   }
+            self.position.addedToCartID = whoAddedIDArray   
             print(Auth.auth().currentUser?.uid ?? "")
         }
     }
@@ -54,8 +62,10 @@ class BuyNowCellModel: ObservableObject{
     
     func deleteFromCart() {
         service.deleteFromCart(position) {
-            self.position.addedToCart = false  
-            self.position.addedToCartID = ""
+            guard var whoAddedIDArray = self.position.addedToCartID else {return }
+            whoAddedIDArray.removeAll { $0 == self.user.id }
+            self.position.addedToCart = false
+            self.position.addedToCartID = whoAddedIDArray
         }
     }
 }

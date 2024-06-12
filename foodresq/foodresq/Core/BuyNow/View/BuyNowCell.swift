@@ -12,9 +12,10 @@ struct BuyNowCell: View {
     @ObservedObject var viewModel: BuyNowCellModel
     let user: User
     init(position: Position, user: User) {
-        self.viewModel = BuyNowCellModel(position: position)
+        self.viewModel = BuyNowCellModel(position: position, user: user)
         self.user = user
     }
+    @State var didCurrentUserAdded: Bool = false
     var greyColor = #colorLiteral(red: 0.5131264925, green: 0.5556035042, blue: 0.5779691339, alpha: 1)
     var lightGreyColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
     var blueColor = #colorLiteral(red: 0.3568627451, green: 0.6196078431, blue: 0.8823529412, alpha: 1)
@@ -35,7 +36,8 @@ struct BuyNowCell: View {
                 if viewModel.position.quantity > 0 {
                     Text("Осталось всего \(viewModel.position.quantity)").font(.custom("Montserrat-Regular", size: 18)).padding(.bottom, 19)
                    
-                    if ( (viewModel.position.addedToCart ?? false) == true ) && (viewModel.position.addedToCartID == self.user.id) {
+                var addedToCartID = viewModel.position.addedToCartID ?? []
+                    if addedToCartID.contains(self.user.id) && ((viewModel.position.addedToCart ?? false) == true) {
                         
                         Button(action: {
                             viewModel.deleteFromCart()

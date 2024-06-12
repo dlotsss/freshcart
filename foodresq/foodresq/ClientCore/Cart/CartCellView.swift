@@ -15,8 +15,11 @@ struct CartCellView: View {
     var lightBlueColor = #colorLiteral(red: 0.8980392157, green: 0.9333333333, blue: 0.968627451, alpha: 1)
     @ObservedObject var viewModel: CartCellViewModel
     
-    init(position: Position) {
-        self.viewModel = CartCellViewModel(position: position)
+    let user: User
+    
+    init(position: Position, user: User) {
+        self.viewModel = CartCellViewModel(position: position, user: user)
+        self.user = user
     }
     
     var body: some View {
@@ -39,5 +42,5 @@ struct CartCellView: View {
 }
 
 #Preview {
-    CartCellView(position: Position.MOCK_POSITIONS[0])
+    CartCellView(position: Position.MOCK_POSITIONS[0], user: User.MOCK_USERS[5])
 }

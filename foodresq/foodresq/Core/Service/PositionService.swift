@@ -29,7 +29,7 @@ struct PositionService{
     
     static func fetchCartPositions(uid: String) async throws -> [Position] {
       //  let snapshot = try await Firestore.firestore().collection("users").document(uid).collection("user-cart").getDocuments()
-        let snapshot = try await Firestore.firestore().collection("positions").whereField("addedToCart", isEqualTo: true).whereField("addedToCartID", isEqualTo: uid).getDocuments()
+        let snapshot = try await Firestore.firestore().collection("positions").whereField("addedToCart", isEqualTo: true).whereField("addedToCartID", arrayContains: uid).getDocuments()
         print(snapshot.documents)
         var positions = try snapshot.documents.compactMap({ document in
             try document.data(as: Position.self)
@@ -57,12 +57,16 @@ extension PositionService{
     func addToCart(_ position: Position, completion: @escaping() -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let positionId = position.id
+        guard var whoAddedIDArray = position.addedToCartID else {return }
+        if !whoAddedIDArray.contains(uid) {
+                   whoAddedIDArray.append(uid)
+               }
         guard position.quantity > 0 else {return}
         let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
-        
+    
         Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity - 1,
                                                                                        "addedToCart": !position.addedToCart!,
-                                                                                       "addedToCartID": uid]) {_ in
+                                                                                       "addedToCartID": whoAddedIDArray]) {_ in
             userCartRef.document(positionId).setData([:]) { _ in
                 completion()
             }
@@ -82,12 +86,14 @@ extension PositionService{
     func deleteFromCart(_ position: Position, completion: @escaping() -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let positionId = position.id
+        guard var whoAddedIDArray = position.addedToCartID else {return }
+        whoAddedIDArray.removeAll { $0 == uid }
         let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
         
         
         Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity + 1,
                                                                                        "addedToCart": !position.addedToCart!,
-                                                                                       "addedToCartID": ""]) {_ in
+                                                                                       "addedToCartID": whoAddedIDArray]) {_ in
             userCartRef.document(positionId).delete { _ in
                 completion()
             }
@@ -99,7 +105,8 @@ extension PositionService{
             guard let uid = Auth.auth().currentUser?.uid else {return }
             print(uid)
             let positionId = positions[i].id
-            
+            guard var whoAddedIDArray = positions[i].addedToCartID else {return }
+            whoAddedIDArray.removeAll { $0 == uid }
             let allPositionsRef = Firestore.firestore().collection("positions")
             let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
             
@@ -114,7 +121,7 @@ extension PositionService{
             } else {
                 allPositionsRef.document(positionId).updateData(["quantity": positions[i].quantity,
                                                                  "addedToCart": !positions[i].addedToCart!,
-                                                                 "addedToCartID": ""])
+                                                                 "addedToCartID": whoAddedIDArray])
                 userCartRef.document(positionId).delete { _ in
                     completion()
                 }

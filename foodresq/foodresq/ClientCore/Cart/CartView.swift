@@ -27,7 +27,7 @@ struct CartView: View {
         ScrollView{
             LazyVStack{
                 ForEach(viewModel.positions) { position in
-                    CartCellView(position: position)
+                    CartCellView(position: position, user: user)
                 }.onAppear(perform: {
                     Task {try await viewModel.fetchCartPositions(uid: self.user.id) }
                     

@@ -21,7 +21,7 @@ class CartViewModel: ObservableObject{
     
     init(user: User) {
         self.user = user
-        Task {try await fetchCartPositions(uid: user.id)
+        Task {try await self.fetchCartPositions(uid: user.id)
         self.setupRealTimeUpdates()
         }
         //Task {try await fetchAddedToCartPositions() }
