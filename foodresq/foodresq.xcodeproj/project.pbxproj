@@ -192,8 +192,8 @@
 		465CF91D2C0A6E2A006368DD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				465CF91E2C0A6E53006368DD /* BuyNowViewModel.swift */,
 				46865E262C0C9880008FDAC1 /* BuyNowCellModel.swift */,
+				465CF91E2C0A6E53006368DD /* BuyNowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

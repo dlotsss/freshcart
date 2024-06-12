@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BuyNowView: View {
-    @ObservedObject var viewModel = BuyNowViewModel()
+    @StateObject var viewModel = BuyNowViewModel()
     
     var greyColor = #colorLiteral(red: 0.5131264925, green: 0.5556035042, blue: 0.5779691339, alpha: 1)
     var lightGreyColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)

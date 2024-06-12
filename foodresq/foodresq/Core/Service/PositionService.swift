@@ -96,36 +96,47 @@ extension PositionService{
     
     func purchase(_ positions: [Position], completion: @escaping() -> Void) {
         for i in 0..<positions.count{
-            guard let uid = Auth.auth().currentUser?.uid else {return}
+            guard let uid = Auth.auth().currentUser?.uid else {return }
+            print(uid)
             let positionId = positions[i].id
             
             let allPositionsRef = Firestore.firestore().collection("positions")
             let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
             
-            allPositionsRef.document(positionId).delete{_ in
-                completion()
-            }
-            
-            userCartRef.document(positionId).delete { _ in
-                completion()
+            if positions[i].quantity < 1{
+                allPositionsRef.document(positionId).delete{_ in
+                    completion()
+                }
+                
+                userCartRef.document(positionId).delete { _ in
+                    completion()
+                }
+            } else {
+                allPositionsRef.document(positionId).updateData(["quantity": positions[i].quantity,
+                                                                 "addedToCart": !positions[i].addedToCart!,
+                                                                 "addedToCartID": ""])
+                userCartRef.document(positionId).delete { _ in
+                    completion()
+                }
             }
         }
     }
     
-    func fetchAddedToCartPositions(forUid uid: String, completion: @escaping([Position]) -> Void) {
-        print(333)
-        var positions = [Position]()
-        Firestore.firestore().collection("restaurants").document(uid).collection("user-cart").getDocuments {snapshot, _ in
-            guard let documents = snapshot?.documents else {return }
-                documents.forEach { doc in
-                    let positionID = doc.documentID
-                    
-                    Firestore.firestore().collection("positions").document(positionID).getDocument { snapshot, _ in
-                        guard let position = try? snapshot?.data(as: Position.self) else { return }
-                        positions.append(position)
-                        completion(positions)
-                    }
-                }
-            }
-    }
+//    func fetchAddedToCartPositions(forUid uid: String, completion: @escaping([Position]) -> Void) {
+//        print(333333)
+//        var positions = [Position]()
+//        Firestore.firestore().collection("restaurants").document(uid).collection("user-cart").getDocuments {snapshot, _ in
+//            guard let documents = snapshot?.documents else {return }
+//            print(documents)
+//                documents.forEach { doc in
+//                    let positionID = doc.documentID
+//                    
+//                    Firestore.firestore().collection("positions").document(positionID).getDocument { snapshot, _ in
+//                        guard let position = try? snapshot?.data(as: Position.self) else { return }
+//                        positions.append(position)
+//                        completion(positions)
+//                    }
+//                }
+//            }
+//    }
 }

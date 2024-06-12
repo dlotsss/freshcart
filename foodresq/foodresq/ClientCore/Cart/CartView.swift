@@ -29,8 +29,9 @@ struct CartView: View {
                 ForEach(viewModel.positions) { position in
                     CartCellView(position: position)
                 }.onAppear(perform: {
-                    Task {try await viewModel.fetchPositions(uid: self.user.id) }
-                    print(viewModel.positions)
+                    Task {try await viewModel.fetchCartPositions(uid: self.user.id) }
+                    
+                    //print(viewModel.positions)
                 })
                 Spacer()
             }

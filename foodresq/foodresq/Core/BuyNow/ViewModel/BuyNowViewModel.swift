@@ -15,20 +15,25 @@ class BuyNowViewModel: ObservableObject{
     private var listener: ListenerRegistration?
     init() {
         Task {try await fetchPositions() }
+        startListeningForRealTimeUpdates()
     }
      
     @MainActor
     func fetchPositions() async throws {
-        self.positions = try await PositionService.fetchAllBuyNowPositions()
+      self.positions = try await PositionService.fetchAllBuyNowPositions()
         
-//        let positionCollection = Firestore.firestore().collection("positions")
-//        listener = positionCollection.addSnapshotListener{snapshot, error in
-//            guard let snapshot = snapshot else { return }
-//            DispatchQueue.main.async {
-//                self.positions = snapshot.documents.compactMap{ document in
-//                    try? document.data(as: Position.self)
-//                }
-//            }
-//        }
     }
+    
+    private func startListeningForRealTimeUpdates() {
+            let db = Firestore.firestore()
+            listener = db.collection("positions").addSnapshotListener { snapshot, error in
+                guard let snapshot = snapshot else {
+                    print("Error fetching data: \(error!)")
+                    return
+                }
+                DispatchQueue.main.async {
+                    Task {try await self.fetchPositions()}
+                }
+            }
+        }
 }

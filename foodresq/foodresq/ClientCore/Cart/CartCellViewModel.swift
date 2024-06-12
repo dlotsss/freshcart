@@ -18,6 +18,7 @@ class CartCellViewModel: ObservableObject{
     func deleteFromCart() {
         service.deleteFromCart(position) {
             self.position.addedToCart = false
+            self.position.addedToCartID = ""
         }
     }
 }

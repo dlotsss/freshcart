@@ -64,6 +64,9 @@ struct BuyNowCell: View {
             }.padding(.vertical, 20).padding(.horizontal, 60).background(RoundedRectangle(cornerRadius: 25).fill(.white)).padding(.bottom, 40)
                 
         }
+//        .onAppear{
+//            viewModel.startListening()
+//        }
     }
 }
 
