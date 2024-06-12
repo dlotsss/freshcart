@@ -21,7 +21,9 @@ class CartViewModel: ObservableObject{
     
     init(user: User) {
         self.user = user
-        Task {try await fetchCartPositions(uid: user.id) }
+        Task {try await fetchCartPositions(uid: user.id)
+        self.setupRealTimeUpdates()
+        }
         //Task {try await fetchAddedToCartPositions() }
     }
     
@@ -38,6 +40,26 @@ class CartViewModel: ObservableObject{
             self.positions[i].addedToCart = false
         }
     }
+    
+    private func setupRealTimeUpdates() {
+           let user = user
+           
+           let db = Firestore.firestore()
+           let cartRef = db.collection("restaurants").document(user.id).collection("user-cart")
+           
+           listener = cartRef.addSnapshotListener { snapshot, error in
+               guard let snapshot = snapshot else {
+                   print("Error fetching cart items: \(error?.localizedDescription )")
+                   return
+               }
+               
+               DispatchQueue.main.async {
+                   Task{
+                       try await self.fetchCartPositions(uid: user.id)
+                   }
+               }
+           }
+       }
     
     //    func fetchAddedToCartPositions() async throws{
     //        let uid = user.id
