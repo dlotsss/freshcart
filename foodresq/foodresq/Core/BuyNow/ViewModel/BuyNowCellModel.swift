@@ -27,7 +27,7 @@ class BuyNowCellModel: ObservableObject{
     func addToCart() {
         service.addToCart(position) {
             guard var whoAddedIDArray = self.position.addedToCartID else {return }
-            self.position.addedToCart = true
+           // self.position.addedToCart = true
             let currentUserUID = Auth.auth().currentUser?.uid ?? ""
             if !whoAddedIDArray.contains(currentUserUID) {
                        whoAddedIDArray.append(currentUserUID)
@@ -40,7 +40,7 @@ class BuyNowCellModel: ObservableObject{
     func checkIfPositionIsAdded() {
         service.checkIfPositionIsAdded(position) { addedToCart in
             if addedToCart{
-                self.position.addedToCart = true
+               // self.position.addedToCart = true
             }
         }
     }
@@ -64,7 +64,7 @@ class BuyNowCellModel: ObservableObject{
         service.deleteFromCart(position) {
             guard var whoAddedIDArray = self.position.addedToCartID else {return }
             whoAddedIDArray.removeAll { $0 == self.user.id }
-            self.position.addedToCart = false
+            //self.position.addedToCart = false
             self.position.addedToCartID = whoAddedIDArray
         }
     }

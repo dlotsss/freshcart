@@ -21,7 +21,7 @@ class CartCellViewModel: ObservableObject{
         service.deleteFromCart(position) {
             guard var whoAddedIDArray = self.position.addedToCartID else {return }
             whoAddedIDArray.removeAll { $0 == self.user.id }
-            self.position.addedToCart = false
+           // self.position.addedToCart = false
             self.position.addedToCartID = whoAddedIDArray
         }
     }

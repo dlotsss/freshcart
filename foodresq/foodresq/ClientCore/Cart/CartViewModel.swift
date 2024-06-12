@@ -36,9 +36,9 @@ class CartViewModel: ObservableObject{
         service.purchase(positions) {
             
         }
-        for i in 0..<positons.count {
-            self.positions[i].addedToCart = false
-        }
+//        for i in 0..<positons.count {
+//            self.positions[i].addedToCart = false
+//        }
     }
     
     private func setupRealTimeUpdates() {

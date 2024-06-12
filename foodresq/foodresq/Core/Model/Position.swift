@@ -15,7 +15,7 @@ struct Position: Identifiable, Codable, Hashable {
     let imageUrl: String
     let quantity: Int
     var user: User?
-    var addedToCart: Bool? = false 
+    //var addedToCart: Bool? = false 
     var addedToCartID: [String]? = []
 }
 

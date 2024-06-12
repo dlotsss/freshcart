@@ -29,7 +29,7 @@ struct PositionService{
     
     static func fetchCartPositions(uid: String) async throws -> [Position] {
       //  let snapshot = try await Firestore.firestore().collection("users").document(uid).collection("user-cart").getDocuments()
-        let snapshot = try await Firestore.firestore().collection("positions").whereField("addedToCart", isEqualTo: true).whereField("addedToCartID", arrayContains: uid).getDocuments()
+        let snapshot = try await Firestore.firestore().collection("positions").whereField("addedToCartID", arrayContains: uid).getDocuments()
         print(snapshot.documents)
         var positions = try snapshot.documents.compactMap({ document in
             try document.data(as: Position.self)
@@ -65,7 +65,7 @@ extension PositionService{
         let userCartRef = Firestore.firestore().collection("restaurants").document(uid).collection("user-cart")
     
         Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity - 1,
-                                                                                       "addedToCart": !position.addedToCart!,
+                                                                                       //"addedToCart": !position.addedToCart!,
                                                                                        "addedToCartID": whoAddedIDArray]) {_ in
             userCartRef.document(positionId).setData([:]) { _ in
                 completion()
@@ -92,7 +92,7 @@ extension PositionService{
         
         
         Firestore.firestore().collection("positions").document(positionId).updateData(["quantity": position.quantity + 1,
-                                                                                       "addedToCart": !position.addedToCart!,
+                                                                                       //"addedToCart": !position.addedToCart!,
                                                                                        "addedToCartID": whoAddedIDArray]) {_ in
             userCartRef.document(positionId).delete { _ in
                 completion()
@@ -120,7 +120,7 @@ extension PositionService{
                 }
             } else {
                 allPositionsRef.document(positionId).updateData(["quantity": positions[i].quantity,
-                                                                 "addedToCart": !positions[i].addedToCart!,
+                                                                // "addedToCart": !positions[i].addedToCart!,
                                                                  "addedToCartID": whoAddedIDArray])
                 userCartRef.document(positionId).delete { _ in
                     completion()

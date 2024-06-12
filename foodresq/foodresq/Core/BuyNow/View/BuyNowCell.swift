@@ -37,8 +37,9 @@ struct BuyNowCell: View {
                     Text("Осталось всего \(viewModel.position.quantity)").font(.custom("Montserrat-Regular", size: 18)).padding(.bottom, 19)
                    
                 var addedToCartID = viewModel.position.addedToCartID ?? []
-                    if addedToCartID.contains(self.user.id) && ((viewModel.position.addedToCart ?? false) == true) {
-                        
+                    if addedToCartID.contains(self.user.id)
+              //&& ((viewModel.position.addedToCart ?? false) == true)
+                    {
                         Button(action: {
                             viewModel.deleteFromCart()
                         }) {
