@@ -1,5 +1,5 @@
 //
-//  RestaurantProfileTabView.swift
+//  MainTabView.swift
 //  foodresq
 //
 //  Created by Дасаева София  on 30.05.2024.
