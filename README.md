@@ -5,7 +5,9 @@ We were shocked that although food waste exacerbates other global issues such as
 
 What shocked us more is that there are no solutions of food waste problem in Kazakhstan, so we decided to change the situation: 
 
+**FreshCart is a triple win**: business win, because they save money; clients' win since they can buy quality food on sales and ecological win as it benefits the environment. 
+
 **FreshCart** is an ecosystem of  consisting of mobile applications and web platform, that provide an opportunity for supermarkets, restaurants, cafes, canteens, and other food-promoting establishments to be able to deal with leftovers that can be thrown away at the end of the working day. Using our platform catering companies will upload near-expiry products and customers will purchase it for lower prices. 
 
-**FreshCart is a triple win**: business win, because they save money; clients' win since they can buy quality food on sales and ecological win as it benefits the environment. 
+This repository is a source code of IOS mobile 
 
