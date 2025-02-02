@@ -9,5 +9,5 @@ What shocked us more is that there are no solutions of food waste problem in Kaz
 
 **FreshCart** is an ecosystem of  consisting of mobile applications and web platform, that provide an opportunity for supermarkets, restaurants, cafes, canteens, and other food-promoting establishments to be able to deal with leftovers that can be thrown away at the end of the working day. Using our platform catering companies will upload near-expiry products and customers will purchase it for lower prices. 
 
-This repository is a source code of IOS mobile app which was written by using
+This repository is a source code of IOS mobile app which was written by using Swift. 
 
