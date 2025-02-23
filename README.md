@@ -112,3 +112,23 @@ A **triple-win ecosystem** (business, customer, environment) built with:
 ┃ ┣ 📜 UploadPositionView.swift
 ┃ ┗ 📜 UploadPositionViewModel.swift
 ```
+### 1. Role-Based Authentication System
+**AuthViewModel.swift** - Core authentication logic:
+```swift
+class AuthViewModel: ObservableObject {
+    @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
+    
+    @MainActor
+    func signIn(withEmail login: String, password: String, isRest: Bool) async throws {
+        let result = try await Auth.auth().signIn(withEmail: login, password: password)
+        self.userSession = result.user
+        try await loadUserData()
+    }
+    
+    @MainActor
+    func createUser(withEmail login: String, password: String, fullname: String, isRest: Bool) async throws {
+        let result = try await Auth.auth().createUser(withEmail: login, password: password)
+        await updateUserData(uid: result.user.uid, username: fullname, login: login, isRest: isRest)
+    }
+}
