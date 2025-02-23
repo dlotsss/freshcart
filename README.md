@@ -185,3 +185,23 @@ class CartViewModel: ObservableObject {
     }
 }
 ```
+
+### 4. Product Management
+**Position.swift** - Core data model:
+
+```
+struct Position: Identifiable, Codable, Hashable {
+    let id: String
+    let ownerUid: String
+    let foodName: String
+    let price: Int
+    let imageUrl: String
+    let quantity: Int
+    var addedToCartID: [String]? = []
+    
+    static var MOCK_POSITIONS: [Position] = [
+        .init(id: UUID().uuidString, ownerUid: "1", foodName: "Margherita Pizza", 
+              price: 1700, imageUrl: "pizza", quantity: 5)
+    ]
+}
+```
