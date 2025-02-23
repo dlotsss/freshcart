@@ -114,7 +114,8 @@ A **triple-win ecosystem** (business, customer, environment) built with:
 ```
 ### 1. Role-Based Authentication System
 **AuthViewModel.swift** - Core authentication logic:
-```swift
+```
+swift
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
@@ -132,3 +133,23 @@ class AuthViewModel: ObservableObject {
         await updateUserData(uid: result.user.uid, username: fullname, login: login, isRest: isRest)
     }
 }
+```
+
+### 2. User Profile Management
+**User.swift** - Data model:
+
+```
+struct User: Identifiable, Hashable, Codable {
+    let id: String
+    let username: String
+    let login: String
+    let isRest: Bool
+    var name: String?
+    var profileImage: String?
+    
+    static var MOCK_USERS: [User] = [
+        .init(id: UUID().uuidString, username: "Palermo", login: "palermo@test.com", isRest: true),
+        .init(id: UUID().uuidString, username: "Client", login: "client@test.com", isRest: false)
+    ]
+}
+```
