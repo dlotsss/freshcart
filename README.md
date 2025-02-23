@@ -7,6 +7,12 @@
 ## Problem Statement  
 40% of food in Kazakhstan is wasted annually, with 78% of discarded food still edible. FreshCart addresses this by connecting businesses with customers to sell near-expiry products at reduced prices.  
 
+## Solution  
+A **triple-win ecosystem** (business, customer, environment) built with:  
+- **iOS App (Swift)**: Consumer-facing platform for purchasing discounted food.  
+- **Firebase/Firestore**: Real-time database, authentication, and cloud services.  
+- **Web Platform**: Business portal for managing inventory (not included in this repo).
+
 A Swift-based iOS application integrated with Firebase Firestore to combat food waste in Kazakhstan by connecting restaurants with consumers for surplus food redistribution.
 
 ## 🌱 Key Features
@@ -28,7 +34,7 @@ A Swift-based iOS application integrated with Firebase Firestore to combat food 
 
 ## 🛠️ Technical Stack
 
-- **Frontend**: SwiftUI, Combine
+- **Frontend**: SwiftUI
 - **Backend**: Firebase Firestore, Authentication, Storage
 - **Architecture**: MVVM
 - **Dependency Management**: Swift Package Manager/CocoaPods
@@ -40,3 +46,6 @@ A Swift-based iOS application integrated with Firebase Firestore to combat food 
 - Xcode 14+
 - iOS 16+ simulator or device
 - Firebase project setup
+
+### Setup Steps:
+
