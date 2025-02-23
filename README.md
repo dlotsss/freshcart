@@ -205,5 +205,16 @@ struct Position: Identifiable, Codable, Hashable {
     ]
 }
 ```
-
-
+### 5. Image Handling Service
+**ImageUploader.swift** - Firebase Storage integration:
+```
+class ImageUploader {
+    static func uploadImage(image: UIImage) async throws -> String? {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil }
+        let filename = UUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
+        let _ = try await ref.putDataAsync(imageData)
+        return try await ref.downloadURL().absoluteString
+    }
+}
+```
