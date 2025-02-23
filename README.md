@@ -114,9 +114,7 @@ A **triple-win ecosystem** (business, customer, environment) built with:
 ```
 ### 1. Role-Based Authentication System
 **AuthViewModel.swift** - Core authentication logic:
-```
-swift
-class AuthViewModel: ObservableObject {
+``` class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     
@@ -151,5 +149,39 @@ struct User: Identifiable, Hashable, Codable {
         .init(id: UUID().uuidString, username: "Palermo", login: "palermo@test.com", isRest: true),
         .init(id: UUID().uuidString, username: "Client", login: "client@test.com", isRest: false)
     ]
+}
+```
+
+### 3. Real-Time Cart System
+**CartViewModel.swift** - Inventory synchronization:
+
+```
+class CartViewModel: ObservableObject {
+    @Published var positions = [Position]()
+    private var listener: ListenerRegistration?
+    
+    init(user: User) {
+        setupRealTimeUpdates(user: user)
+    }
+    
+    private func setupRealTimeUpdates(user: User) {
+        let db = Firestore.firestore()
+        let cartRef = db.collection("restaurants").document(user.id).collection("user-cart")
+        
+        listener = cartRef.addSnapshotListener { snapshot, _ in
+            Task { try await self.fetchCartPositions(uid: user.id) }
+        }
+    }
+    
+    func processCheckout() async throws {
+        let batch = Firestore.firestore().batch()
+        for position in positions {
+            let ref = Firestore.firestore().collection("positions").document(position.id)
+            position.quantity > 1 ? 
+                batch.updateData(["quantity": FieldValue.increment(-1)], forDocument: ref) :
+                batch.deleteDocument(ref)
+        }
+        try await batch.commit()
+    }
 }
 ```
