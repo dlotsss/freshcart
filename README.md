@@ -187,7 +187,7 @@ class CartViewModel: ObservableObject {
 ```
 
 ### 4. Product Management
-**Position.swift** - Core data model:
+**Position.swift** - Data model:
 
 ```
 struct Position: Identifiable, Codable, Hashable {
@@ -205,3 +205,5 @@ struct Position: Identifiable, Codable, Hashable {
     ]
 }
 ```
+
+
