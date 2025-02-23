@@ -238,3 +238,5 @@ restaurants/
       ├── isRest: boolean
       └── profileImage: string
 ```
+
+![FreshCart Demo](./imgs/demo-freshcart.gif)
