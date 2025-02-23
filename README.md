@@ -47,79 +47,68 @@ A **triple-win ecosystem** (business, customer, environment) built with:
 - iOS 16+ simulator or device
 - Firebase project setup
 
-# Project File Structure
+# FreshCart File Structure
 
-## 📂 freshcart
-### 📂 Authentication
-- **View**
-  - `LoginView.swift`
-  - `RegistrationView.swift`
-- **ViewModel**
-  - `AuthViewModel.swift`
-
-### 📂 BuyNow
-- **View**
-  - `BuyNowCell.swift`
-  - `BuyNowView.swift`
-- **ViewModel**
-  - `BuyNowCellModel.swift`
-  - `BuyNowViewModel.swift`
-
-### 📂 ClientCore
-- **Cart**
-  - `CartCellView.swift`
-  - `CartCellViewModel.swift`
-  - `CartView.swift`
-  - `CartViewModel.swift`
-
-### 📂 ClientProfile
-- `ClientProfileView.swift`
-- `EditClientProfileView.swift`
-- `EditClientProfileViewModel.swift`
-
-### 📂 Components
-- `InputView.swift`
-- `PositionView.swift`
-- `ProfileHeader.swift`
-- `ProfileImageView.swift`
-- `SettingRowView.swift`
-
-### 📂 Model
-- `Position.swift`
-- `User.swift`
-
-### 📂 OnBoards
-- `onboardFour.swift`
-- `onboardOne.swift`
-- `onboardThree.swift`
-- `onboardTwo.swift`
-
-### 📂 Profile
-- **View**
-  - `CurrentRestaurantProfileView.swift`
-  - `EditProfileView.swift`
-  - `profileRestaurant.swift`
-- **ViewModel**
-  - `EditProfileViewModel.swift`
-  - `profileRestaurantModel.swift`
-
-### 📂 RestaurantsList
-- `RestaurantsView.swift`
-- `RestaurantsViewModel.swift`
-
-### 📂 Root
-- **View**
-  - `ContentView.swift`
-
-### 📂 Service
-- `ImageUploader.swift`
-- `PositionService.swift`
-- `UserService.swift`
-
-### 📂 TabView
-- `MainTabView.swift`
-
-### 📂 UploadPosition
-- `UploadPositionView.swift`
-- `UploadPositionViewModel.swift`
-
+```
+📦 FreshCart
+┣ 📂 Authentication
+┃ ┣ 📂 View
+┃ ┃ ┣ 📜 LoginView.swift
+┃ ┃ ┗ 📜 RegistrationView.swift
+┃ ┗ 📂 ViewModel
+┃ ┃ ┗ 📜 AuthViewModel.swift
+┣ 📂 BuyNow
+┃ ┣ 📂 View
+┃ ┃ ┣ 📜 BuyNowCell.swift
+┃ ┃ ┗ 📜 BuyNowView.swift
+┃ ┗ 📂 ViewModel
+┃ ┃ ┣ 📜 BuyNowCellModel.swift
+┃ ┃ ┗ 📜 BuyNowViewModel.swift
+┣ 📂 ClientCore
+┃ ┗ 📂 Cart
+┃ ┃ ┣ 📜 CartCellView.swift
+┃ ┃ ┣ 📜 CartCellViewModel.swift
+┃ ┃ ┣ 📜 CartView.swift
+┃ ┃ ┗ 📜 CartViewModel.swift
+┣ 📂 ClientProfile
+┃ ┣ 📜 ClientProfileView.swift
+┃ ┣ 📜 EditСlientProfileView.swift
+┃ ┗ 📜 EditСlientProfileViewModel.swift
+┣ 📂 Components
+┃ ┣ 📜 InputView.swift
+┃ ┣ 📜 PositionView.swift
+┃ ┣ 📜 ProfileHeader.swift
+┃ ┣ 📜 ProfileImageView.swift
+┃ ┗ 📜 SettingRowView.swift
+┣ 📂 Model
+┃ ┣ 📜 Position.swift
+┃ ┗ 📜 User.swift
+┣ 📂 OnBoards
+┃ ┣ 📜 onboardFour.swift
+┃ ┣ 📜 onboardOne.swift
+┃ ┣ 📜 onboardThree.swift
+┃ ┗ 📜 onboardTwo.swift
+┣ 📂 Profile
+┃ ┣ 📂 View
+┃ ┃ ┣ 📜 CurrentRestaurantProfileView.swift
+┃ ┃ ┣ 📜 EditProfileView.swift
+┃ ┃ ┗ 📜 profileRestaurant.swift
+┃ ┗ 📂 ViewModel
+┃ ┃ ┣ 📜 EditProfileViewModel.swift
+┃ ┃ ┗ 📜 profileRestaurantModel.swift
+┣ 📂 RestaurantsList
+┃ ┣ 📜 RestaurantsView.swift
+┃ ┗ 📜 RestaurantsViewModel.swift
+┣ 📂 Root
+┃ ┗ 📂 View
+┃ ┃ ┗ 📜 ContentView.swift
+┣ 📂 Service
+┃ ┣ 📜 ImageUploader.swift
+┃ ┣ 📜 PositionService.swift
+┃ ┗ 📜 UserService.swift
+┣ 📂 TabView
+┃ ┗ 📜 MainTabView.swift
+┗ 📂 UploadPosition
+┃ ┣ 📜 UploadPositionView.swift
+┃ ┗ 📜 UploadPositionViewModel.swift
+```
