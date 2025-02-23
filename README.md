@@ -26,8 +26,17 @@ A Swift-based iOS application integrated with Firebase Firestore to combat food 
   - Expiry tracking for food items
   - Sales analytics dashboard
 
-- **Core Technologies**
-  - MVVM architecture pattern
-  - Combine framework for reactive programming
-  - Firestore real-time database
-  - Firebase Storage for media assets
+## 🛠️ Technical Stack
+
+- **Frontend**: SwiftUI, Combine
+- **Backend**: Firebase Firestore, Authentication, Storage
+- **Architecture**: MVVM
+- **Dependency Management**: Swift Package Manager/CocoaPods
+- **Tools**: Xcode 14+, iOS 16+
+
+## 📲 Installation
+
+### Prerequisites
+- Xcode 14+
+- iOS 16+ simulator or device
+- Firebase project setup
