@@ -218,3 +218,23 @@ class ImageUploader {
     }
 }
 ```
+
+### 🔥 Firestore Architecture
+```
+// Collections Structure
+restaurants/
+  ├── {restaurantID}
+  │   ├── positions/
+  │   │   └── {positionID}
+  │   │       ├── foodName: string
+  │   │       ├── price: number
+  │   │       ├── quantity: number
+  │   │       └── imageUrl: string
+  │   └── user-cart/
+  │       └── {userID}
+  │           └── positions: array[string]
+  └── users/
+      ├── id: string
+      ├── isRest: boolean
+      └── profileImage: string
+```
