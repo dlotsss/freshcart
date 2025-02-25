@@ -219,7 +219,7 @@ class ImageUploader {
 }
 ```
 
-### 🔥 Firestore Architecture
+### 6 Firestore Architecture
 ```
 // Collections Structure
 restaurants/
