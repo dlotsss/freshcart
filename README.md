@@ -7,7 +7,7 @@ A Swift-based iOS application integrated with Firebase Firestore to combat food 
 [![Firebase](https://img.shields.io/badge/Firebase-9.0-red.svg)](https://firebase.google.com/)
 
 ## Problem Statement  
-In Kazakhstan 1.3 million tons of food is wasted annually, it is 40% of all food produces. 78% of discarded food still edible. TheFreshCart addresses this by connecting businesses with customers to sell near-expiry products at reduced prices. 
+In Kazakhstan 1.3 million tons of food is wasted annually, it is 40% of all food produces. 78% of discarded food is still edible, though. TheFreshCart addresses this by connecting businesses with customers to sell near-expiry products at reduced prices. 
 
 ## Solution  
 A **triple-win ecosystem** (business, customer, environment) built with:  
