@@ -3,7 +3,7 @@
 
 A Swift-based iOS application integrated with Firebase Firestore to combat food waste in Kazakhstan by connecting restaurants with consumers for surplus food redistribution.
 
-[![Swift](https://img.shields.io/badge/Swift-5.7-orange.svg)](https://swift.org/)
+
 [![Firebase](https://img.shields.io/badge/Firebase-9.0-red.svg)](https://firebase.google.com/)
 
 ## Problem Statement  
