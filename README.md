@@ -4,7 +4,6 @@
 A Swift-based iOS application integrated with Firebase Firestore to combat food waste in Kazakhstan by connecting restaurants with consumers for surplus food redistribution.
 
 [![Swift](https://img.shields.io/badge/Swift-5.7-orange.svg)](https://swift.org/)
-[![Firebase](https://img.shields.io/badge/Firebase-9.0-red.svg)](https://firebase.google.com/)
 
 ## Problem Statement  
 In Kazakhstan 1.3 million tons of food is wasted annually, it is 40% of all food produces. 78% of discarded food is still edible, though. Still, there are 750k people who are below the poverty line in our country. In the world, when 1.3 billion tons of food is wasted, it creates 9.3 billion tons of CO2 emissions because 1kg of wasted food produces 2.5 kg of CO2. Thus, if food waste were a country, it would be the 3rd largest greenhouse gas emitter. The global damage to business it $218 billion. TheFreshCart addresses this by connecting businesses with customers to sell near-expiry products at reduced prices. 
